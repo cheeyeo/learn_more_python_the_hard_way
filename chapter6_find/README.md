@@ -16,4 +16,8 @@
 
  ## References:
 
- * (pathlib documentation)[docs.python.org/3/library/pathlib.html]
+ * (pathlib documentation)[https://docs.python.org/3/library/pathlib.html]
+
+ * (subprocess documentation)[https://docs.python.org/3/library/subprocess.html#subprocess.check_output]
+
+ * (subprocess examples)[http://queirozf.com/entries/python-3-subprocess-examples#run-command-and-capture-output]
