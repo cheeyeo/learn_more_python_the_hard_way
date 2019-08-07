@@ -6,10 +6,10 @@ ap = argparse.ArgumentParser()
 ap.add_argument("directory", type=str, help="Directory to search in")
 
 group = ap.add_mutually_exclusive_group(required=True)
-group.add_argument("-n", "--name", type=str, help="Name of files")
+group.add_argument("-n", "--name", type=str, help="Name of files. Please quote wildcards else it gets expanded in the shell...")
 group.add_argument("-t", "--type", type=str, help="Type of files")
 
-ap.add_argument("action", type=str, help="Action to take")
+# ap.add_argument("action", type=str, help="Action to take")
 args = vars(ap.parse_args())
 
 if args["name"] != None:
