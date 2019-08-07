@@ -15,12 +15,24 @@ files = pathlib.Path(path).rglob(filenames)
 matches = []
 for file in files:
 	path = os.path.abspath(file)
-	with open(path, 'r') as f:
-		content = f.readlines()
-		matched_content = [l for l in content if re.search(search_pattern, l)]
-		for c in matched_content:
-			idx = content.index(c) + 1
-			matches.append("{}:{:d}: {}".format(path, idx, c))
+
+	if file.is_dir():
+		files = pathlib.Path(path).rglob("*")
+		for f in files:
+			path = os.path.abspath(f)
+			with open(path, 'r') as f:
+				content = f.readlines()
+				matched_content = [l for l in content if re.search(search_pattern, l)]
+				for c in matched_content:
+					idx = content.index(c) + 1
+					matches.append("{}:{:d}: {}".format(path, idx, c))
+	elif file.is_file():
+		with open(path, 'r') as f:
+			content = f.readlines()
+			matched_content = [l for l in content if re.search(search_pattern, l)]
+			for c in matched_content:
+				idx = content.index(c) + 1
+				matches.append("{}:{:d}: {}".format(path, idx, c))
 
 for m in matches:
 	print(m)
