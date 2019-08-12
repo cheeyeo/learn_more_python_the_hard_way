@@ -2,7 +2,7 @@
 
 1. How much of `find` did you implement?
 
-   Only managed to implement the directory, `name` and `type` arguments
+   Only managed to implement the directory, `name` , `type`, `exec` arguments
 
 2. What are the libraries you have found to improve this implementation?
 
