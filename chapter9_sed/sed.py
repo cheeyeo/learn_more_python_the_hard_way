@@ -6,6 +6,8 @@ from utils import read_lines
 expression = sys.argv[1]
 targets = sys.argv[2:]
 
+# Note: Actual sed usage also takes input from stdin i.e. try to read from sys.stdin
+
 # Check format of expression
 # If s/*** => search and replace
 search_replace = re.compile(r's\/.*\/.*\/g', re.I+re.S)
