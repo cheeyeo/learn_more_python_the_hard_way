@@ -4,6 +4,8 @@ import string
 from utils import read_lines, has_input
 import io
 
+# TODO: Rewrite this to accept -e, -f parameters
+
 expression = sys.argv[1]
 
 if has_input(sys.stdin):
@@ -36,4 +38,4 @@ for target in targets:
 	for line in lines:
 		# replace string with expression
 		new_line = re.sub(replacement[0], replacement[1], line)
-		print(new_line)
+		print(new_line.strip())
