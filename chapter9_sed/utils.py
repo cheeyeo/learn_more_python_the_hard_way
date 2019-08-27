@@ -5,5 +5,4 @@ def read_lines(file):
 		return f.readlines()
 
 def has_input(*args):
-	print(args)
 	return select.select(args, [], [], 0.0)[0]
