@@ -1,12 +1,19 @@
 import sys
 import re
 import string
-from utils import read_lines
+from utils import read_lines, has_input
+import io
 
 expression = sys.argv[1]
-targets = sys.argv[2:]
 
-# Note: Actual sed usage also takes input from stdin i.e. try to read from sys.stdin
+if has_input(sys.stdin):
+	targets = [sys.stdin]
+else:
+	targets = sys.argv[2:]
+
+if len(targets) < 1:
+	print('You need to pass in either a file or stdin.')
+	exit(1)
 
 # Check format of expression
 # If s/*** => search and replace
@@ -21,7 +28,11 @@ else:
 	exit(1)
 
 for target in targets:
-	lines = read_lines(target)
+	if isinstance(target, io.TextIOWrapper):
+		lines = target.readlines()
+	else:
+		lines = read_lines(target)
+
 	for line in lines:
 		# replace string with expression
 		new_line = re.sub(replacement[0], replacement[1], line)
