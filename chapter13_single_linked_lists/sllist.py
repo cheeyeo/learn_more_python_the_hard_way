@@ -41,8 +41,10 @@ class SingleLinkedList(object):
 		else:
 			popped = self.end
 			node = self.begin
+			# Below takes you up to second last node, before the last node to be removed
 			while node.nxt != self.end:
 				node = node.nxt
+			# Check that the node is not the last node
 			assert self.end != node
 			self.end = node
 			node.nxt = None
