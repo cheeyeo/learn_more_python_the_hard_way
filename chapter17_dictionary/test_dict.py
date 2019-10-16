@@ -39,18 +39,33 @@ class TestDictionary(TestCase):
 
 		self.assertIsNone(cities.get('CA'))
 
-
 	def test_get_bucket(self):
-		pass
+		tmp = Dictionary()
+		key = tmp.hash_key('test')
+		self.assertEqual(tmp.get_bucket('test'), tmp.map.get(key))
+		self.assertIsInstance(tmp.get_bucket('test'), DoubleLinkedList)
 
 	def test_get_slot(self):
-		pass
+		d = Dictionary(num_buckets=1)
+		b, s = d.get_slot('test')
+		self.assertEqual(b, d.map.get(d.hash_key('test')))
+		self.assertIsNone(s)
 
+		d.set('test', 1)
+
+		b, s = d.get_slot('test')
+		self.assertEqual(b, d.map.get(d.hash_key('test')))
+		self.assertEqual(s, b.begin)
+		self.assertEqual(s.value[0], 'test')
+		self.assertEqual(s.value[1], 1)
+
+	# TODO: Fix the test below to mock hash()
 	def test_hash_key(self):
-		pass
-
-	def test_list(self):
-		pass
+		d = Dictionary(num_buckets=2)
+		k = d.hash_key('test')
+		self.assertEqual(k, 1)
+		k = d.hash_key('test2')
+		self.assertEqual(k, 1)
 
 
 if __name__ == '__main__':

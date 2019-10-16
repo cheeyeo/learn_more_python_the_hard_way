@@ -6,10 +6,11 @@ class Dictionary(object):
 		for i in range(0, num_buckets):
 			self.map.push(DoubleLinkedList())
 
-
 	def hash_key(self, key):
 		"""
-		Takes key and creates number and index for aMap's buckets
+		Takes key and creates number and index for a map's buckets.
+
+		The hash() method returns the hash value of an object if it has one. Hash values are just integers which are used to compare dictionary keys during a dictionary lookup quickly
 		"""
 
 		return hash(key) % self.map.count()
@@ -55,7 +56,11 @@ class Dictionary(object):
 
 	def set(self, key, value):
 		"""
-		Sets ket to the value, replacing existing value 
+		Sets ket to the value, replacing existing value
+
+		This returns the last DLL and sets the value at the end for a new entry
+
+		For an existing entry it finds the node within the list and replaces it with the tuple
 		"""
 
 		bucket, slot = self.get_slot(key)
@@ -95,5 +100,3 @@ class Dictionary(object):
 				slot_node = slot_node.next
 
 			bucket_node = bucket_node.next
-
-
